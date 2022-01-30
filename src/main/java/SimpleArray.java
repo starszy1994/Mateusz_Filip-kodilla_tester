@@ -16,7 +16,7 @@ public class SimpleArray {
         }
         int numerOfElements = sports.length;
 
-        if (numerOfElements < 6){
+        if (numerOfElements <= 5){
             System.out.println("Moja tablica zawiera 5 elementów");
         } else {
             System.out.println("Moja tablica nie zawiera 5 elementów");
