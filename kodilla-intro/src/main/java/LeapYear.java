@@ -1,6 +1,6 @@
 public class LeapYear {
     public static void main(String[] agrs) {
-        int year = 2012;
+        int year = 2016;
         int leapYear;
         int yearNotLeap;
 
