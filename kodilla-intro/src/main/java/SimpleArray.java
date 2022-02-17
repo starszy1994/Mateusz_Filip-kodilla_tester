@@ -1,6 +1,5 @@
 public class SimpleArray {
     public static void main(String[] args) {
-        ;
 
         String[] sports = new String[5];
 
