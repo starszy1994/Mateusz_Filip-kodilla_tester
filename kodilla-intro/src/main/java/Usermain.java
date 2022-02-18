@@ -11,11 +11,6 @@
 //        User[] users = {mateusz, martyna, pawel, michal, agata, anita};
 //
 //        int numerOfElements = users.length;
-//
-//        double result = 0;
-//        for (double i = 0; i < users.length; i++){
-//            result = result + users[i];
-//            System.out.println(result);
 //        }
 //    }
 //}

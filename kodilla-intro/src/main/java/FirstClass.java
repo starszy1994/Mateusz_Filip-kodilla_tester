@@ -9,11 +9,14 @@ public class FirstClass {
 
         Notebook heavyNotebook = new Notebook(1200, 1500, 2020);
         System.out.println(heavyNotebook.weight + " " + heavyNotebook.price + " " + heavyNotebook.year);
-        heavyNotebook.checkPrice();heavyNotebook.checkWeight();heavyNotebook.checkYear();
+        heavyNotebook.checkPrice();
+        heavyNotebook.checkWeight();
+        heavyNotebook.checkYear();
 
         Notebook oldNotebook = new Notebook(1600, 800, 2017);
         System.out.println(oldNotebook.weight + " " + oldNotebook.price + " " + oldNotebook.year);
-        oldNotebook.checkPrice();oldNotebook.checkWeight();oldNotebook.checkYear();
-
+        oldNotebook.checkPrice();
+        oldNotebook.checkWeight();
+        oldNotebook.checkYear();
     }
 }
