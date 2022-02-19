@@ -1,6 +1,6 @@
 public class User {
-    String name;
-    int age;
+    private String name;
+    private int age;
 
     public User(String name, int age) {
         this.name = name;
@@ -23,7 +23,7 @@ public class User {
         result = result / users.length;
         for (int i = 0; i < users.length; i++) {
             if (users[i].age < result) {
-                System.out.println(users[i]);
+                System.out.println(users[i].name);
             }
         }
     }
