@@ -5,3 +5,4 @@ public class ColorName {
         System.out.println("Result: "+ result);
     }
 }
+
