@@ -7,6 +7,10 @@ public class User {
         this.age = age;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static void main(String[] args) {
         User mateusz = new User("mateusz", 28);
         User martyna = new User("martyna", 30);
@@ -23,7 +27,7 @@ public class User {
         result = result / users.length;
         for (int i = 0; i < users.length; i++) {
             if (users[i].age < result) {
-                System.out.println(users[i].name);
+                System.out.println(users[i].getName());
             }
         }
     }
