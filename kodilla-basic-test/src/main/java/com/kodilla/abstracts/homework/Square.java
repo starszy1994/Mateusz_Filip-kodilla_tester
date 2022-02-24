@@ -4,21 +4,18 @@ import static java.lang.Math.pow;
 
 public class Square extends Shape {
 
-    public double
+    private double a;
 
-    public Square {
-        super();
+    public void setA(double a) {
+        this.a = a;
     }
-
-    public void surfaceArea() {
-        double squareArea = ();
-        System.out.println("The surface is " + squareArea);
+    public double getA() {
+        return a;
     }
-
-    @Override
-    public double perimeter() {
-        double squarePerimeter = a * 6.5;
-        System.out.println("Square perimeter is " + squarePerimeter);
-        return squarePerimeter;
+    public double Area() {
+        return a*a;
+    }
+    public double Circuit() {
+        return 4*a;
     }
 }
