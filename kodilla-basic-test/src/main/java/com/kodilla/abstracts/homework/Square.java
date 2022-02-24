@@ -12,10 +12,10 @@ public class Square extends Shape {
     public double getA() {
         return a;
     }
-    public double Area() {
+    public double area() {
         return a*a;
     }
-    public double Circuit() {
+    public double circuit() {
         return 4*a;
     }
 }

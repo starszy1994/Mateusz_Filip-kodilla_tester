@@ -2,11 +2,19 @@ package com.kodilla.abstracts.homework;
 
 public abstract class Shape {
 
-    public double Area() {
-        return Area();
+    private double area;
+    private double circuit;
+
+    public Shape(){
+        this.area = area;
+        this.circuit = circuit;
     }
 
-    public double Circuit(){
-        return Circuit();
+    public double getArea() {
+        return area;
+    }
+
+    public double getCircuit() {
+        return circuit;
     }
 }

@@ -12,3 +12,4 @@ public class Teacher extends Job {
         return responsibilities;
     }
 }
+

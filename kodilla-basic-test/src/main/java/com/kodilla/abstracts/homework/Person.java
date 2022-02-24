@@ -4,9 +4,9 @@ public class Person {
 
     public String firstName;
     public int age;
-    public String job;
+    public String Job;
 
-    public Person(String name, int age, String job) {
+    public Person(String name, int age, String Job) {
         Person Anna = new Person ("Anna", 28, "Teacher");
         Person Ricky = new Person("Ricky", 48, "Comedian");
         Person Joe = new Person("Joe", 29, "Driver");
@@ -27,3 +27,4 @@ public class Person {
         driver.getResponsibilities();
     }
 }
+

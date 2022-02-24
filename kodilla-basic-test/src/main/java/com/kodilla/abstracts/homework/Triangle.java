@@ -32,10 +32,10 @@ public class Triangle extends Shape{
     public double getH() {
         return h;
     }
-    public double Area() {
+    public double area() {
         return a*h/2;
     }
-    public double Circuit() {
+    public double circuit() {
         return a+b+c;
     }
 }
