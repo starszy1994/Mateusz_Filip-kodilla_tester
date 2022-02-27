@@ -4,18 +4,13 @@ import static java.lang.Math.pow;
 
 public class Square extends Shape {
 
-    private double a;
+    public double a;
 
-    public void setA(double a) {
-        this.a = a;
-    }
-    public double getA() {
-        return a;
-    }
-    public double area() {
+    public double giveArea() {
         return a*a;
     }
-    public double circuit() {
+
+    public double giveCircuit() {
         return 4*a;
     }
 }

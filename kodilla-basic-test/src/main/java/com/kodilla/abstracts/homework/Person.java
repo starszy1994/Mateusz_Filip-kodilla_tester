@@ -17,13 +17,13 @@ public class Person {
 
     public static void main(String[] args) {
 
-        Job teacher = new Teacher ();
+        Teacher teacher = new Teacher ();
         teacher.getResponsibilities();
 
-        Job comedian = new Comedian();
+        Comedian comedian = new Comedian();
         comedian.getResponsibilities();
 
-        Job driver = new Driver();
+        Driver driver = new Driver();
         driver.getResponsibilities();
     }
 }
