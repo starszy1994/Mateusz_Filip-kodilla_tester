@@ -4,18 +4,22 @@ public class Person {
 
     private String firstName;
     private int age;
-    private Job job ;
+    private Job job;
 
-    public Person(String name, int age, String Job) {
+    public Person(String firstName, int age, Job job) {
+        this.firstName = firstName;
+        this.age = age;
+        this.job = job;
+    }
+
+    public static void main(String[] args) {
+
         Person Anna = new Person ("Anna", 28, "Teacher");
         Person Ricky = new Person("Ricky", 48, "Comedian");
         Person Joe = new Person("Joe", 29, "Driver");
         Person[] person = {Anna, Ricky, Joe};
         int numerOfElements = person.length;
         int result = 0;
-    }
-
-    public static void main(String[] args) {
 
         Teacher teacher = new Teacher ();
         teacher.getResponsibilities();

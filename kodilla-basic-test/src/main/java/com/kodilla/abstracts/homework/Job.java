@@ -8,6 +8,7 @@ public abstract class Job {
         this.salary = salary;
         this.responsibilities = responsibilities;
     }
+
     public String getResponsibilities(){
         return responsibilities;
     }
