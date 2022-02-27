@@ -2,8 +2,13 @@ package com.kodilla.abstracts.homework;
 
 public class Rectangle extends Shape{
 
-    public double a;
-    public double b;
+    private double a;
+    private double b;
+
+    public Rectangle(double a, double b) {
+        this.a = a;
+        this.b = b;
+    }
 
     public double giveArea() {
         return a*b;
