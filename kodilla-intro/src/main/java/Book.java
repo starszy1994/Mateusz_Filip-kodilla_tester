@@ -13,7 +13,8 @@ public class Book {
     }
 
     public static void main(String[] args) {
-        Book book = new Book("Isaac Asimov", "The Galaxy");
+
+        Book book = Book.of("Isaac Asimov", "The Galaxy");
         System.out.println(book.author + " "+ book.title);
     }
 }

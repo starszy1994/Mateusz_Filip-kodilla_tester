@@ -7,4 +7,3 @@ public class Teacher extends Job {
         System.out.println("Teachers duties include: " +responsibilities);
     }
 }
-

@@ -10,25 +10,26 @@ public class Person {
         this.firstName = firstName;
         this.age = age;
         this.job = job;
+
     }
-
     public static void main(String[] args) {
-
-        Person Anna = new Person ("Anna", 28, "Teacher");
-        Person Ricky = new Person("Ricky", 48, "Comedian");
-        Person Joe = new Person("Joe", 29, "Driver");
-        Person[] person = {Anna, Ricky, Joe};
+        Teacher teacher = new Teacher ();
+        Person anna = new Person ("Anna", 28, teacher);
+        Comedian comedian = new Comedian();
+        Person ricky = new Person ("Ricky", 48, comedian);
+        Driver driver = new Driver();
+        Person joe = new Person ("Joe", 28, driver);
+        Person[] person = {anna, ricky, joe};
         int numerOfElements = person.length;
         int result = 0;
 
-        Teacher teacher = new Teacher ();
+
         teacher.getResponsibilities();
 
-        Comedian comedian = new Comedian();
+
         comedian.getResponsibilities();
 
-        Driver driver = new Driver();
+
         driver.getResponsibilities();
     }
 }
-

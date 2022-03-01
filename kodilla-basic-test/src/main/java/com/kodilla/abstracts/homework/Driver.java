@@ -7,4 +7,3 @@ public class Driver extends Job {
         System.out.println("Drivers duties include: " +responsibilities);
     }
 }
-
