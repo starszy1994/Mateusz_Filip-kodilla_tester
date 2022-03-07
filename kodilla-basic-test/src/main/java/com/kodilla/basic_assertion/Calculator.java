@@ -8,7 +8,7 @@ public class Calculator {
     public int subtract(int a, int b){
         return a - b;
     }
-    public double squared(int a){
+    public double squared(double a){
         return Math.pow(Double.valueOf(a), 2.0);
     }
 }
