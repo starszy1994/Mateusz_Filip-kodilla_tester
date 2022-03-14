@@ -58,7 +58,7 @@ public class CashMachineTestSuit {
     public void czyZatrzymujeWyplatyPoOsiagnieciuZerowegoSalda() {
         cashMachnie.addTransactions(-6000);
         assertEquals(5000, cashMachnie.getBalance());
-        assertEquals(0, cashMachnie.withdrawalSize);
+        assertEquals(0, cashMachnie.getWithdrawalSize());
     }
     @Test
     public void czySumujeWartosciWyplat() {

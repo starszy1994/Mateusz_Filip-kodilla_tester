@@ -17,7 +17,7 @@ public class Ford implements Car{
     }
     @Override
     public void decreaseSpeed() {
-        this.speed = speed * 4;
+        this.speed = speed / 4;
     }
 
 }

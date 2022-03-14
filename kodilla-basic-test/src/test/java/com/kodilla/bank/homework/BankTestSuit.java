@@ -21,31 +21,31 @@ public class BankTestSuit {
         thisBank.addMachine(machine1);
         thisBank.getNumberOfMachnies();
         assertEquals(1, thisBank.numberOfMachine);
-        assertEquals(2500, machine1.balance);
+        assertEquals(2500, machine1.getBalance());
         thisBank.addMachine(machine2);
         thisBank.getNumberOfMachnies();
         assertEquals(2, thisBank.numberOfMachine);
-        assertEquals(1000, machine2.balance);
+        assertEquals(1000, machine2.getBalance());
         thisBank.addMachine(machine3);
         thisBank.getNumberOfMachnies();
         assertEquals(3, thisBank.numberOfMachine);
-        assertEquals(1500, machine3.balance);
+        assertEquals(1500, machine3.getBalance());
     }
     @Test
     public void czyBankomatDodajeTransakcjeZMetodyCashMachine() {
         thisBank.addMachine(machine1);
         machine1.addTransactions(250);
-        assertEquals(250, machine1.transactions[0]);
+        assertEquals(250, machine1.getTransactions()[0]);
         machine1.addTransactions(-200);
-        assertEquals(-200, machine1.transactions[1]);
+        assertEquals(-200, machine1.getTransactions()[1]);
     }
     @Test
     public void czyPrzeliczaSaldoMetodaZCashMachine () {
         thisBank.addMachine(machine1);
         machine1.addTransactions(250);
-        assertEquals(2750, machine1.balance);
+        assertEquals(2750, machine1.getBalance());
         machine1.addTransactions(-100);
-        assertEquals(2650, machine1.balance);
+        assertEquals(2650, machine1.getBalance());
     }
     @Test
     public void czyLiczyBilansCalkowity () {

@@ -2,13 +2,13 @@ package com.kodilla.bank.homework;
 
 public class CashMachine {
 
-    public int[] transactions;
-    public int balance;
-    public int size;
-    public int depositSize;
-    public int withdrawalSize;
-    public int depositSum;
-    public int withdrawalSum;
+    private int[] transactions;
+    private int balance;
+    private int size;
+    int depositSize;
+    private int withdrawalSize;
+//    public int depositSum;
+//    public int withdrawalSum;
 
     public CashMachine (int balance){
         this.transactions = new int[0];
@@ -47,7 +47,8 @@ public class CashMachine {
             }
         }
         public int getDepositSum() {
-            depositSum = 0;
+//            depositSum = 0;
+            int depositSum;
             for (int i = 0; i < transactions.length; i++) {
                 if (transactions[i] > 0) {
                     depositSum += transactions[i];
@@ -56,7 +57,7 @@ public class CashMachine {
             return depositSum;
         }
         public int getWithdrawalSum() {
-            withdrawalSum = 0;
+//            withdrawalSum = 0;
             for (int i = 0; i < transactions.length; i++) {
                 if (transactions[i] < 0) {
                     withdrawalSum += transactions[i];

@@ -3,10 +3,6 @@ package com.kodilla.bank.homework;
 public class Bank {
     private CashMachine[] theMachines;
     public int numberOfMachine;
-
-    public int totalDeposits;
-    public int totalWithdrawals;
-    public int totalBalance;
     public double depositAverage;
     public double withdrawalAverage;
 
@@ -26,14 +22,14 @@ public class Bank {
         return numberOfMachine;
     }
     public int totalBalance() {
-        totalBalance = 0;
+        int totalBalance = 0;
         for (int i = 0; i < theMachines.length; i++) {
             totalBalance += theMachines[i].getBalance();
         }
         return totalBalance;
     }
     public int totalDeposits() {
-        totalDeposits = 0;
+        int totalDeposits = 0;
         for (int i = 0; i <theMachines.length; i++) {
             if (theMachines[i].depositSize == 0) {
                 return 0;
@@ -44,9 +40,9 @@ public class Bank {
         return totalDeposits;
     }
     public int totalWithdrawals () {
-        totalWithdrawals = 0;
+        int totalWithdrawals = 0;
         for (int i = 0; i < theMachines.length; i++) {
-            if (theMachines[i].withdrawalSize == 0) {
+            if (theMachines[i].getWithdrawalSize() == 0) {
                 return 0;
             } else {
                 totalWithdrawals += theMachines[i].getWithdrawalSize();
@@ -55,6 +51,7 @@ public class Bank {
         return totalWithdrawals;
     }
     public double totalDepositAverages() {
+        int totalDeposits = dis.total.deposite; // wywoałć metodę total deposite -
         if (totalDeposits == 0) {
             return 0;
         } else {
@@ -67,7 +64,7 @@ public class Bank {
             return depositAverage;
         }
     }
-    public double totalWithdrawalAverage() {
+    public double totalWithdrawalAverage() {   // tak samo jak z total deposite
         if (totalWithdrawals == 0) {
             return 0;
         } else {
