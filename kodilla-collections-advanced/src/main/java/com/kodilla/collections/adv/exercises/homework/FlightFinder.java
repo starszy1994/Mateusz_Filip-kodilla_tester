@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FlightFinder {
-    private List<Flight> flights = FlightRepository.getFlightsTable();
+    private static List<Flight> flights = FlightRepository.getFlightsTable();
 
-    public List<Flight> findFlightsFrom(String departure) {
+    public static List<Flight> findFlightsFrom(String departure) {
         List<Flight> resultFlights = new ArrayList<>();
         for (Flight flight : flights) {
             if (flight.getDeparture().equalsIgnoreCase(departure)) {
@@ -16,7 +16,7 @@ public class FlightFinder {
         return resultFlights;
     }
 
-    public List<Flight> findFlightsTo(String arrival) {
+    public static List<Flight> findFlightsTo(String arrival) {
         List<Flight> resultFlights = new ArrayList<>();
         for (Flight flight : flights) {
             if (flight.getArrival().equalsIgnoreCase(arrival)) {

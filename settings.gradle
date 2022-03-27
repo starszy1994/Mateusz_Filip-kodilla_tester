@@ -6,4 +6,6 @@ include 'kodilla-collections'
 include 'kodilla-collections'
 include 'kodilla-collections'
 include 'kodilla-collections-advanced'
+include 'kodilla-collections-advanced:src:test:untitled'
+findProject(':kodilla-collections-advanced:src:test:untitled')?.name = 'untitled'
 
