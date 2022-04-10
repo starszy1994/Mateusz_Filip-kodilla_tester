@@ -4,5 +4,5 @@ public interface MobilePhone {
 
     boolean needsCharging();
     double getFreeStorage();
-    void lunchApplication(String applicationName);
+    void launchApplication(String applicationName);
 }
