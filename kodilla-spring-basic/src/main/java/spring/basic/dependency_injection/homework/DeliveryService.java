@@ -1,4 +1,4 @@
-package com.kodilla.spring.basic.dependency_injection.homework;
+package spring.basic.dependency_injection.homework;
 
 public interface DeliveryService {
 

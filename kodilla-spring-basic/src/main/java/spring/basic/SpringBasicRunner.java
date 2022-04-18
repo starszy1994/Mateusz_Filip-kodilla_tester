@@ -1,4 +1,4 @@
-package com.kodilla.spring.basic;
+package spring.basic;
 
 public class SpringBasicRunner {
 
