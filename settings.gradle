@@ -10,4 +10,5 @@ include 'kodilla-collections-advanced:src:test:untitled'
 findProject(':kodilla-collections-advanced:src:test:untitled')?.name = 'untitled'
 include 'kodilla-stream'
 include 'kodilla-advance-tests'
+include 'kodilla-spring-basic'
 
