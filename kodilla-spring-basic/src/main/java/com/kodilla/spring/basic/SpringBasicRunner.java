@@ -1,4 +1,4 @@
-package spring.basic;
+package com.kodilla.spring.basic;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

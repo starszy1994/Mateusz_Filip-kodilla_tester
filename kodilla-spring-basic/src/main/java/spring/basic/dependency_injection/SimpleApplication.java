@@ -1,17 +1,20 @@
 package spring.basic.dependency_injection;
 
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+
+@Component
 public class SimpleApplication {
 
+    @Resource(name = "skypeMessageService")
     private MessageService messageService;
 
-    public SimpleApplication(MessageService messageService) {
-        this.messageService = messageService;
-    }
-
-    public void processMessage(String message, String receiver) {
+    public String processMessage(String message, String receiver) {
         if (checkReceiver(receiver)) {
-            this.messageService.send(message, receiver);
+            return this.messageService.send(message, receiver);
         }
+        return null;
     }
 
     private boolean checkReceiver(String receiver) {

@@ -1,9 +1,11 @@
 package spring.basic.dependency_injection;
 
-public class SkypeMessageService implements MessageService{
+import org.springframework.stereotype.Component;
 
-    @Override
-    public void send(String message, String receiver) {
-        System.out.println("Sending [" + message +"] to: " + receiver + " using Skype");
+@Component
+public class SkypeMessageService implements MessageService {
+
+    public String send(String message, String receiver) {
+        return "Sending [" + message + "] to: " + receiver + " using Skype";
     }
 }

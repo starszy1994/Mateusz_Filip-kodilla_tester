@@ -1,9 +1,12 @@
 package spring.basic.dependency_injection;
 
-public class FacebookMessageService implements MessageService{
+import org.springframework.stereotype.Component;
+
+@Component
+public class FacebookMessageService implements MessageService {
 
     @Override
-    public void send(String message, String receiver) {
-        System.out.println("Sending [" + message + "] to: " + receiver + " using Facebook");
+    public String send(String message, String receiver) {
+        return "Sending [" + message + "] to: " + receiver + " using Facebook";
     }
 }
