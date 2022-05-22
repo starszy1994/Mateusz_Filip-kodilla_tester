@@ -6,347 +6,164 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BankTestSuite {
 
-    CashMachine cashMachineTest = new CashMachine(0);
-    CashMachine cashMachineTest2 = new CashMachine(0);
-    CashMachine cashMachineTest3 = new CashMachine(0);
-    Bank bankTest = new Bank(0);
+    Bank theBank = new Bank();
+    CashMachine machineOne = new CashMachine(5000);
+    CashMachine machineTwo = new CashMachine(2000);
+    CashMachine machineThree = new CashMachine(3000);
 
     @Test
-    public void cashMachineShouldHaveZeroLength() {
-        assertEquals(0, cashMachineTest.getSize());
+    public void shouldHaveZeroLength() {
+        theBank.getNumberOfMachines();
+        assertEquals(0, theBank.getNumberOfMachines());
     }
 
     @Test
-    public void cashMachineShouldHaveOneTransaction() {
-        cashMachineTest.addTransaction(100);
-        assertEquals(1, cashMachineTest.getSize());
+    public void shouldAddMachine() {
+        theBank.addMachine(machineOne);
+        theBank.getNumberOfMachines();
+        assertEquals(1, theBank.numberOfMachines);
+        assertEquals(5000,machineOne.balance);
+        theBank.addMachine(machineTwo);
+        theBank.getNumberOfMachines();
+        assertEquals(2, theBank.numberOfMachines);
+        assertEquals(2000,machineTwo.balance);
     }
 
     @Test
-    public void cashMachineShouldHaveTwoTransactions() {
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-200);
-        assertEquals(2, cashMachineTest.getSize());
+    public void shouldAddTransaction() {
+        theBank.addMachine(machineOne);
+        machineOne.addTransaction(500);
+        assertEquals(500, machineOne.transactions[0]);
+        machineOne.addTransaction(-200);
+        assertEquals(-200, machineOne.transactions[1]);
     }
 
     @Test
-    public void cashMachineShouldHaveOneTransaction2() {
-        cashMachineTest.addTransaction(100);
-        assertEquals(1, cashMachineTest.getNumberOfTransactions());
+    public void shouldAddToBalanceFromBank() {
+        theBank.addMachine(machineOne);
+        machineOne.addTransaction(500);
+        assertEquals(5500, machineOne.balance);
+        machineOne.addTransaction(-200);
+        assertEquals(5300, machineOne.balance);
     }
 
     @Test
-    public void cashMachineShouldHaveTwoTransactions2() {
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-200);
-        assertEquals(2, cashMachineTest.getNumberOfTransactions());
+    public void shouldCountTotalBalance() {
+        theBank.addMachine(machineOne);
+        machineOne.getBalance();
+        theBank.addMachine(machineTwo);
+        machineTwo.getBalance();
+        theBank.addMachine(machineThree);
+        machineThree.getBalance();
+        assertEquals(10000,theBank.totalBalance());
     }
 
     @Test
-    public void cashMachineBalanceShouldBeZero() {
-        assertEquals(0.0, cashMachineTest.getBalance());
+    public void shouldCountTotalDeposit() {
+        theBank.addMachine(machineOne);
+        machineOne.addTransaction(300);
+        machineOne.getDepositSize();
+        theBank.addMachine(machineTwo);
+        machineTwo.addTransaction(200);
+        machineTwo.getDepositSize();
+        theBank.addMachine(machineThree);
+        machineThree.addTransaction(500);
+        machineThree.getDepositSize();
+        theBank.totalDeposits();
+        assertEquals(3,theBank.totalDeposits());
     }
 
     @Test
-    public void cashMachineBalanceShouldBeOneHundred() {
-        cashMachineTest.addTransaction(100);
-        assertEquals(100.0, cashMachineTest.getBalance());
+    public void shouldCountTotalWithdrawal() {
+        theBank.addMachine(machineOne);
+        machineOne.addTransaction(-300);
+        machineOne.getWithdrawalSize();
+        theBank.addMachine(machineTwo);
+        machineTwo.addTransaction(-200);
+        machineTwo.getWithdrawalSize();
+        theBank.addMachine(machineThree);
+        machineThree.addTransaction(-500);
+        machineThree.getWithdrawalSize();
+        theBank.totalWithdrawals();
+        assertEquals(3,theBank.totalWithdrawals());
+    }
+    @Test
+    public void shouldNotCountTotalZeroDeposits() {
+        theBank.addMachine(machineOne);
+        machineOne.getDepositSize();
+        theBank.addMachine(machineTwo);
+        machineTwo.getDepositSize();
+        assertEquals(0,theBank.totalDeposits());
     }
 
     @Test
-    public void cashMachineBalanceShouldBeMinusOneHundred() {
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-200);
-        assertEquals(-100.0, cashMachineTest.getBalance());
+    public void shouldNotCountTotalZeroWithdrawals() {
+        theBank.addMachine(machineOne);
+        machineOne.getWithdrawalSize();
+        theBank.addMachine(machineTwo);
+        machineTwo.getWithdrawalSize();
+        assertEquals(0,theBank.totalWithdrawals());
     }
 
     @Test
-    public void cashMachineBalanceShouldBeOneHundredPlus() {
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction (-4999);
-        cashMachineTest.addTransaction(200.5);
-        assertEquals(-4698.5, cashMachineTest.getBalance());
+    public void shouldCountDepositAverage() {
+        theBank.addMachine(machineOne);
+        theBank.addMachine(machineTwo);
+        machineOne.addTransaction(400);
+        machineOne.addTransaction(200);
+        machineOne.getDepositSize();
+        machineOne.getDepositSum();
+        machineTwo.addTransaction(100);
+        machineTwo.addTransaction(100);
+        machineTwo.getDepositSize();
+        machineTwo.getDepositSum();
+        theBank.totalDeposits();
+        theBank.totalDepositAverage();
+        assertEquals(200,theBank.totalDepositAverage());
+
     }
 
     @Test
-    public void countWithdrawTransactionsShouldHaveBeenZero() {
-        assertEquals(0, cashMachineTest.countWithdrawTransactions());
+    public void shouldNotCountAverageZeroDeposits() {
+        theBank.addMachine(machineOne);
+        theBank.addMachine(machineTwo);
+        machineOne.getDepositSize();
+        machineOne.getDepositSum();
+        machineTwo.getDepositSize();
+        machineTwo.getDepositSum();
+        theBank.totalDeposits();
+        theBank.totalDepositAverage();
+        assertEquals(0,theBank.totalDepositAverage());
     }
 
     @Test
-    public void countWithdrawTransactionsShouldHaveBeenZero2() {
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(200.5);
-        assertEquals(0, cashMachineTest.countWithdrawTransactions());
+    public void shouldCountWithdrawalAverage() {
+        theBank.addMachine(machineOne);
+        theBank.addMachine(machineTwo);
+        machineOne.addTransaction(-400);
+        machineOne.addTransaction(-200);
+        machineOne.getWithdrawalSize();
+        machineOne.getWithdrawalSum();
+        machineTwo.addTransaction(-100);
+        machineTwo.addTransaction(-100);
+        machineTwo.getWithdrawalSize();
+        machineTwo.getWithdrawalSum();
+        theBank.totalWithdrawals();
+        theBank.totalWithdrawalAverage();
+        assertEquals(-200,theBank.totalWithdrawalAverage());
     }
 
     @Test
-    public void countWithdrawTransactionsShouldHaveBeenOne() {
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-200);
-        cashMachineTest.addTransaction(200.5);
-        assertEquals(1, cashMachineTest.countWithdrawTransactions());
+    public void shouldNotCountAverageZeroWithdrawals() {
+        theBank.addMachine(machineOne);
+        theBank.addMachine(machineTwo);
+        machineOne.getWithdrawalSize();
+        machineOne.getWithdrawalSum();
+        machineTwo.getWithdrawalSize();
+        machineTwo.getWithdrawalSum();
+        theBank.totalWithdrawals();
+        theBank.totalWithdrawalAverage();
+        assertEquals(0,theBank.totalWithdrawalAverage());
     }
 
-    @Test
-    public void countDepositTransactionsShouldHaveBeenZero() {
-        assertEquals(0, cashMachineTest.countDepositTransactions());
-    }
-
-    @Test
-    public void countDepositTransactionsShouldHaveBeenZero2() {
-        cashMachineTest.addTransaction(-100);
-        cashMachineTest.addTransaction(-200.5);
-        assertEquals(0, cashMachineTest.countDepositTransactions());
-    }
-
-    @Test
-    public void countDepositTransactionsShouldHaveBeenOne() {
-        cashMachineTest.addTransaction(-100);
-        cashMachineTest.addTransaction(200);
-        cashMachineTest.addTransaction(-200.5);
-        assertEquals(1, cashMachineTest.countDepositTransactions());
-    }
-
-    @Test
-    public void depositSumShouldHaveBeenZero() {
-        assertEquals(0, cashMachineTest.depositSum());
-    }
-
-    @Test
-    public void depositSumShouldHaveBeenOneHundred() {
-        cashMachineTest.addTransaction(100);
-        assertEquals(100, cashMachineTest.depositSum());
-    }
-
-    @Test
-    public void depositSumShouldHaveBeenThreeHundred() {
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(200);
-        assertEquals(300, cashMachineTest.depositSum());
-    }
-
-    @Test
-    public void depositSumShouldHaveNotCountWithdrawals() {
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(200);
-        cashMachineTest.addTransaction(-200);
-        assertEquals(300, cashMachineTest.depositSum());
-    }
-
-    @Test
-    public void withdrawSumShouldHaveBeenZero() {
-        assertEquals(0, cashMachineTest.withdrawSum());
-    }
-
-    @Test
-    public void withdrawSumShouldHaveBeenOneMinusHundred() {
-        cashMachineTest.addTransaction(-100);
-        assertEquals(-100, cashMachineTest.withdrawSum());
-    }
-
-    @Test
-    public void withdrawSumShouldHaveBeenMinusThreeHundred() {
-        cashMachineTest.addTransaction(-100);
-        cashMachineTest.addTransaction(-200);
-        assertEquals(-300, cashMachineTest.withdrawSum());
-    }
-
-    @Test
-    public void withdrawSumShouldHaveNotCountDeposits() {
-        cashMachineTest.addTransaction(-100);
-        cashMachineTest.addTransaction(200);
-        cashMachineTest.addTransaction(-200);
-        assertEquals(-300, cashMachineTest.withdrawSum());
-    }
-
-    @Test
-    public void bankShouldHaveZeroLength() {
-        assertEquals(0, bankTest.size2);
-    }
-
-    @Test
-    public void bankShouldHaveOneCashMachine() {
-        bankTest.addCashMachine(cashMachineTest);
-        assertEquals(1, bankTest.size2);
-    }
-
-    @Test
-    public void bankShouldHaveThreeCashMachines() {
-        bankTest.addCashMachine(cashMachineTest);
-        bankTest.addCashMachine(cashMachineTest2);
-        bankTest.addCashMachine(cashMachineTest3);
-        assertEquals(3, bankTest.size2);
-    }
-
-    @Test
-    public void bankBalanceShouldBeZero() {
-        assertEquals(0, bankTest.bankBalance());
-    }
-
-    @Test
-    public void bankBalanceShouldBeOneHundred() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        assertEquals(100, bankTest.bankBalance());
-    }
-
-    @Test
-    public void bankBalanceShouldCountAllTransactions() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-100);
-        assertEquals(0, bankTest.bankBalance());
-    }
-
-    @Test
-    public void bankBalanceShouldCountAllTransactions2() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-100);
-        bankTest.addCashMachine(cashMachineTest2);
-        cashMachineTest2.addTransaction(200);
-        cashMachineTest2.addTransaction(-100);
-        assertEquals(100, bankTest.bankBalance());
-    }
-
-    @Test
-    public void bankDepositSumShouldBeZero() {
-        assertEquals(0, bankTest.depositSum());
-    }
-
-    @Test
-    public void bankDepositSumShouldBeOneHundred() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        assertEquals(100, bankTest.depositSum());
-    }
-
-    @Test
-    public void bankDepositSumShouldNotCountWithdrawals() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-100);
-        assertEquals(100, bankTest.depositSum());
-    }
-
-    @Test
-    public void bankDepositSumShouldNotCountWithdrawals2() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-100);
-        bankTest.addCashMachine(cashMachineTest2);
-        cashMachineTest2.addTransaction(200);
-        cashMachineTest2.addTransaction(-100);
-        assertEquals(300, bankTest.depositSum());
-    }
-
-    @Test
-    public void bankWithdrawSumShouldBeZero() {
-        assertEquals(0, bankTest.withdrawSum());
-    }
-
-    @Test
-    public void bankWithdrawSumShouldBeMinusOneHundred() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(-100);
-        assertEquals(-100, bankTest.withdrawSum());
-    }
-
-    @Test
-    public void bankWithdrawSumShouldNotCountDeposits() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-100);
-        assertEquals(-100, bankTest.withdrawSum());
-    }
-
-    @Test
-    public void bankWithdrawSumShouldNotCountDeposits2() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-100);
-        bankTest.addCashMachine(cashMachineTest2);
-        cashMachineTest2.addTransaction(200);
-        cashMachineTest2.addTransaction(-100);
-        assertEquals(-200, bankTest.withdrawSum());
-    }
-
-    @Test
-    public void bankDepositCountShouldBeZero() {
-        assertEquals(0, bankTest.depositCount());
-    }
-
-    @Test
-    public void bankDepositCountShouldEqualOne() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        assertEquals(1, bankTest.depositCount());
-    }
-
-    @Test
-    public void bankDepositCountShouldNotCountWithdrawals() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-100);
-        bankTest.addCashMachine(cashMachineTest2);
-        cashMachineTest2.addTransaction(200);
-        cashMachineTest2.addTransaction(-100);
-        assertEquals(2, bankTest.depositCount());
-    }
-
-    @Test
-    public void bankWithdrawCountShouldBeZero() {
-        assertEquals(0, bankTest.withdrawCount());
-    }
-
-    @Test
-    public void bankWithdrawCountShouldEqualOne() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(-100);
-        assertEquals(1, bankTest.withdrawCount());
-    }
-
-    @Test
-    public void bankWithdrawCountShouldNotCountDeposits() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-100);
-        bankTest.addCashMachine(cashMachineTest2);
-        cashMachineTest2.addTransaction(200);
-        cashMachineTest2.addTransaction(-100);
-        assertEquals(2, bankTest.withdrawCount());
-    }
-
-    @Test
-    public void averageDepositCashMachineShouldBeZero() {
-        assertEquals(0, bankTest.averageDepositCashMachine());
-    }
-
-    @Test
-    public void checkAverageDepositCashMachine1() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-100);
-        bankTest.addCashMachine(cashMachineTest2);
-        cashMachineTest2.addTransaction(200);
-        cashMachineTest2.addTransaction(-100);
-        assertEquals(150, bankTest.averageDepositCashMachine());
-    }
-
-    @Test
-    public void averageWithdrawCashMachineShouldBeZero() {
-        assertEquals(0, bankTest.averageWithdrawCashMachine());
-    }
-
-    @Test
-    public void checkAverageWithdrawCashMachine1() {
-        bankTest.addCashMachine(cashMachineTest);
-        cashMachineTest.addTransaction(100);
-        cashMachineTest.addTransaction(-100);
-        bankTest.addCashMachine(cashMachineTest2);
-        cashMachineTest2.addTransaction(200);
-        cashMachineTest2.addTransaction(-200);
-        assertEquals(-150, bankTest.averageWithdrawCashMachine());
-    }
 }

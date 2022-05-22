@@ -1,82 +1,92 @@
 package com.kodilla.bank.homework;
 
 public class Bank {
-    CashMachine[] cashMachines;
-    int size2 = 0;
 
-    public Bank(int size2) {
-        this.cashMachines = new CashMachine[size2];
+    private CashMachine[] theMachines;
+    public int numberOfMachines;
+
+    public int totalDeposits;
+    public int totalWithdrawals;
+    public int totalBalance;
+    public double depositAverage;
+    public double withdrawalAverage;
+
+    public Bank() {
+        this.theMachines = new CashMachine[0];
+        this.numberOfMachines = 0;
+
     }
 
-    public void addCashMachine(CashMachine cashMachine) {
-        this.size2++;
-        CashMachine[] newTab = new CashMachine[this.size2];
-        System.arraycopy(cashMachines, 0, newTab, 0, cashMachines.length);
-        newTab[this.size2 - 1] = cashMachine;
-        this.cashMachines = newTab;
+    public void addMachine(CashMachine balance) {
+        this.numberOfMachines++;
+        CashMachine[] newTab = new CashMachine[this.numberOfMachines];
+        System.arraycopy(theMachines, 0, newTab, 0, theMachines.length);
+        newTab[this.numberOfMachines - 1] = balance;
+        this.theMachines = newTab;
     }
 
-    public double bankBalance() {
-        double balance = 0;
-        for (int n = 0; n < cashMachines.length; n++) {
-            if (cashMachines[n] != null) {
-                balance += cashMachines[n].getBalance();
+    public int getNumberOfMachines() {
+        return numberOfMachines;
+    }
+
+    public int totalBalance() {
+        totalBalance = 0;
+        for (int i = 0; i < theMachines.length; i++) {
+            totalBalance += theMachines[i].getBalance();
+        }
+        return totalBalance;
+    }
+
+    public int totalDeposits() {
+        totalDeposits = 0;
+        for (int i = 0; i < theMachines.length; i++) {
+            if (theMachines[i].depositSize == 0) {
+                return 0;
+            } else {
+                totalDeposits += theMachines[i].getDepositSize();
             }
         }
-        return balance;
+        return totalDeposits;
     }
 
-    public double depositSum() {
-        double depositSum = 0;
-        for (int i = 0; i < cashMachines.length; i++) {
-            if (cashMachines[i] != null) {
-                depositSum += cashMachines[i].depositSum();
+    public int totalWithdrawals() {
+        totalWithdrawals = 0;
+        for (int i = 0; i < theMachines.length; i++) {
+            if (theMachines[i].withdrawalSize == 0) {
+                return 0;
+            } else {
+                totalWithdrawals += theMachines[i].getWithdrawalSize();
             }
         }
-        return depositSum;
+        return totalWithdrawals;
     }
 
-    public double withdrawSum() {
-        double withdrawSum = 0;
-        for (int i = 0; i < cashMachines.length; i++) {
-            if (cashMachines[i] != null) {
-                withdrawSum += cashMachines[i].withdrawSum();
-            }
-        }
-        return withdrawSum;
-    }
-
-    public int depositCount() {
-        int count = 0;
-        for (int i = 0; i < cashMachines.length; i++) {
-            if (cashMachines[i] != null) {
-                count += cashMachines[i].countDepositTransactions();
-            }
-        }
-        return count;
-    }
-
-    public int withdrawCount() {
-        int count = 0;
-        for (int i = 0; i < cashMachines.length; i++) {
-            if (cashMachines[i] != null) {
-                count += cashMachines[i].countWithdrawTransactions();
-            }
-        }
-        return count;
-    }
-
-    public double averageDepositCashMachine() {
-        if (depositCount() == 0) {
+    public double totalDepositAverage() {
+        if (totalDeposits == 0) {
             return 0;
+        } else {
+            depositAverage = 0;
+            int sum = 0;
+            for (int i = 0; i < theMachines.length; i++) {
+                sum += theMachines[i].depositSum;
+            }
+            depositAverage = sum / totalDeposits;
+            return depositAverage;
         }
-        return depositSum() / depositCount();
     }
 
-    public double averageWithdrawCashMachine() {
-        if (withdrawCount() == 0) {
+    public double totalWithdrawalAverage() {
+        if (totalWithdrawals == 0) {
             return 0;
+        } else {
+            withdrawalAverage = 0;
+            int sum = 0;
+            for (int i = 0; i < theMachines.length; i++) {
+                sum += theMachines[i].withdrawalSum;
+            }
+            withdrawalAverage = sum / totalWithdrawals;
+            return withdrawalAverage;
         }
-        return withdrawSum() / withdrawCount();
     }
+
 }

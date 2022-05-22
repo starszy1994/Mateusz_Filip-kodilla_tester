@@ -1,88 +1,97 @@
 package com.kodilla.bank.homework;
 
 public class CashMachine {
-    private double[] cashMachine;
-    private int size;
-    double transactionValue;
 
-    public CashMachine(int size) {
+    public int[] transactions;
+    public int balance;
+    public int size;
+    public int depositSize;
+    public int withdrawalSize;
+    public int depositSum;
+    public int withdrawalSum;
+
+    public CashMachine(int balance) {
+
+        this.transactions = new int[0];
         this.size = 0;
-        this.cashMachine = new double[0];
+        this.balance = balance;
     }
 
-    public void addTransaction(double transactionValue) {
-        if (transactionValue < -5000) {
-            System.out.println("You exceeded maximum value");
+    public void addTransaction(int value) {
+        if (value == 0) {
+            return;
         } else {
             this.size++;
-            double[] newTab = new double[this.size];
-            System.arraycopy(cashMachine, 0, newTab, 0, cashMachine.length);
-            newTab[this.size - 1] = transactionValue;
-            this.cashMachine = newTab;
-        }
-    }
-
-    public double[] getCashMachine() {
-        return cashMachine;
-    }
-
-    public double getBalance() {
-        double sum = 0;
-        for (int i = 0; i < this.cashMachine.length; i++) {
-            sum += this.cashMachine[i];
-        }
-        return sum;
-    }
-
-    public int getNumberOfTransactions() {
-        return cashMachine.length;
-    }
-
-    public int countWithdrawTransactions() {
-        int withdrawsCount = 0;
-        for (int i = 0; i < this.cashMachine.length; i++) {
-            if (cashMachine[i] < 0) {
-                withdrawsCount += 1;
+            int[] newTransactions = new int[this.size];
+            System.arraycopy(transactions, 0, newTransactions, 0, transactions.length);
+            newTransactions[this.size - 1] = value;
+            this.transactions = newTransactions;
+            System.out.println("Bilans " + this.getBalance());
+            if (value > 0) {
+                this.depositSize++;
+                balance += value;
+                System.out.println("Wpłacono " + value);
+            } else if (value < 0) {
+                if (balance < value * -1) {
+                    System.out.println("Bankomat nie ma środków do wykonania wypłaty.");
+                } else {
+                    this.withdrawalSize++;
+                    balance += value;
+                    System.out.println("Wypłacono " + value * -1);
+                }
             } else {
-                withdrawsCount += 0;
+                System.out.println("Nie zmieniono stanu konta.");
+
             }
+            System.out.println("Saldo " + this.getBalance());
+            System.out.println("Lącznie wpłat: " + this.getDepositSize());
+            System.out.println("Lącznie wypłat: " + this.getWithdrawalSize());
+            System.out.println("Lącznie operacji: " + this.getSize());
         }
-        return withdrawsCount;
     }
 
-    public int countDepositTransactions() {
-        int depositsCount = 0;
-        for (int i = 0; i < this.cashMachine.length; i++) {
-            if (cashMachine[i] > 0) {
-                depositsCount += 1;
-            } else {
-                depositsCount += 0;
+    public int getDepositSum() {
+        depositSum = 0;
+        for(int i = 0; i < transactions.length; i++) {
+            if(transactions[i] > 0) {
+                depositSum += transactions[i];
             }
         }
-        return depositsCount;
+        return depositSum;
     }
 
-    public double depositSum() {
-        double sum = 0;
-        for (int i = 0; i < this.cashMachine.length; i++) {
-            if (cashMachine[i] > 0) {
-                sum += cashMachine[i];
+    public int getWithdrawalSum() {
+        withdrawalSum = 0;
+        for(int i = 0; i < transactions.length; i++) {
+            if(transactions[i] < 0) {
+                withdrawalSum += transactions[i];
             }
         }
-        return sum;
+
+        return withdrawalSum;
     }
 
-    public double withdrawSum() {
-        double sum = 0;
-        for (int i = 0; i < this.cashMachine.length; i++) {
-            if (cashMachine[i] < 0) {
-                sum += cashMachine[i];
-            }
-        }
-        return sum;
+    public int[] getTransactions() {
+
+        return transactions;
+    }
+
+    public int getBalance() {
+        return balance;
     }
 
     public int getSize() {
+
         return size;
+    }
+
+    public int getDepositSize() {
+
+        return depositSize;
+    }
+
+    public int getWithdrawalSize() {
+
+        return withdrawalSize;
     }
 }
